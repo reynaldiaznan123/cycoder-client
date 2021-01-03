@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        
+        <script src="/js/cycoder-client.js"></script>
+        <script>
+            const echo = new Client({
+                host: 'http://localhost:3000',
+                transportOptions: {
+                    polling: {
+                        extraHeaders: {
+                            'X-App-Id': '6e868125-dfe0-4e70-b476-9391e1ec1748',
+                            'X-App-Secret': 'abcdefghijklmnopqrstuvwxyzdadaaa'
+                        }
+                    }
+                }
+            });
+
+            const channel = echo.channel('new-message');
+            const test = channel.listen('test', (event) => {
+                console.log(event);
+
+                test.stop();
+            });
+        </script>
+    </body>
+</html>
